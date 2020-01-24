@@ -31,6 +31,14 @@ namespace ASTS.EF
         }
 
 
+        // Materials
+        public async Task<ICollection<Material>> GetMaterials()
+        {
+            return await _db.Materials.ToListAsync();
+        }
+
+
+
 
         // Material requests
         public async Task<MaterialRequest> AddMaterialRequest(MaterialRequest materialRequest)
@@ -45,6 +53,49 @@ namespace ASTS.EF
             var res = _db.RequestedMaterials.Add(requestedMaterial);
             await _db.SaveChangesAsync();
             return res.Entity;
+        }
+
+
+
+        // Projects
+        public async Task<ICollection<Project>> GetProjects()
+        {
+            return await _db.Projects.ToListAsync();
+        }
+
+
+        // Areas
+        public async Task<ICollection<Area>> GetAreas()
+        {
+            return await _db.Areas.ToListAsync();
+        }
+
+
+        // Disciplines
+        public async Task<ICollection<Discipline>> GetDisciplines()
+        {
+            return await _db.Disciplines.ToListAsync();
+        }
+
+
+        // Works
+        public async Task<ICollection<Work>> GetWorks()
+        {
+            return await _db.Works.ToListAsync();
+        }
+
+
+        //MaterialGroups
+        public async Task<ICollection<MaterialGroup>> GetMaterialGroups()
+        {
+            return await _db.MaterialGroups.ToListAsync();
+        }
+
+        // MaterialUnits
+
+        public async Task<ICollection<MaterialUnit>> GetMaterialUnits()
+        {
+            return await _db.MaterialUnits.ToListAsync();
         }
     }
 }

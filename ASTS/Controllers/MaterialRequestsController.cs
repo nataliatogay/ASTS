@@ -13,7 +13,7 @@ namespace ASTS.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class MaterialRequestsController : ControllerBase
+    public class MaterialRequestsController : ResponseController
     {
         private readonly IMaterialRequestService _materialRequestService;
         private readonly UserManager<IdentityUser> _userManager;
@@ -26,7 +26,7 @@ namespace ASTS.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<MaterialRequest>> Post([FromBody] NewMaterialRequestRequest newMaterialRequest)
+        public async Task<ActionResult<ServerResponse<MaterialRequest>>> Post([FromBody] NewMaterialRequestRequest newMaterialRequest)
         {
             //var user = await _userManager.FindByNameAsync(User.Identity.Name);
             //if (user is null)
