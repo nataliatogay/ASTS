@@ -41,6 +41,11 @@ namespace ASTS.EF
 
 
         // Material requests
+
+        public async Task<MaterialRequest> GetMaterialRequest(int id)
+        {
+            return await _db.MaterialRequests.FindAsync(id);
+        }
         public async Task<MaterialRequest> AddMaterialRequest(MaterialRequest materialRequest)
         {
             var res = _db.MaterialRequests.Add(materialRequest);

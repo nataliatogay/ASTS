@@ -27,6 +27,7 @@ namespace ASTS.Controllers
     }
     public enum StatusCode
     {
-        Ok
+        Ok,
+        SendingMailError
     }
 }

@@ -34,7 +34,8 @@ namespace ASTS.Services
             {
                 AreaId = materialRequestRequest.AreaId,
                 DateIssue = DateTime.Now,
-                DateRequired = DateTime.ParseExact(materialRequestRequest.DateRequired, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                //DateRequired = DateTime.ParseExact(materialRequestRequest.DateRequired, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                DateRequired = materialRequestRequest.DateRequired,
                 AdditionalInfo = materialRequestRequest.AdditionalInfo,
                 //IssuedByUserId = issuer.Id,
                 IssuedByUserId = 1
@@ -57,6 +58,10 @@ namespace ASTS.Services
 
         }
 
+        public async Task<MaterialRequest> GetMaterialRequest(int id)
+        {
+            return await _repository.GetMaterialRequest(id);
+        }
 
 
 

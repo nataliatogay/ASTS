@@ -10,6 +10,7 @@ namespace ASTS.Services.Interfaces
     public interface IMaterialRequestService
     {
         Task<MaterialRequest> AddNewMaterialRequest(NewMaterialRequestRequest materialRequestRequest, string issuerIdentityId);
+        Task<MaterialRequest> GetMaterialRequest(int id);
 
         // transfer
         Task<User> AddUser(User user);

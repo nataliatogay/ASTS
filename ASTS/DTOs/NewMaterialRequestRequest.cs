@@ -10,7 +10,7 @@ namespace ASTS.DTOs
     {
 
         [Required]
-        public string DateRequired { get; set; }
+        public DateTime DateRequired { get; set; }
         public int AreaId { get; set; }
         public string AdditionalInfo { get; set; }
         public ICollection<RequestedMaterialRequest> Materials { get; set; }

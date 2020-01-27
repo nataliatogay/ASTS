@@ -5,11 +5,29 @@ using System.Threading.Tasks;
 using ASTS.DTOs;
 using ASTS.Models;
 using ASTS.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASTS.Controllers
 {
+    public class ResponseTemp
+    {
+        public string Project { get; set; }
+        public string Area { get; set; }
+        public string RequiredDate { get; set; }
+        public ICollection<MaterialInfo> Materials { get; set; }
+    }
+
+    public class MaterialInfo
+    {
+        public string Discipline { get; set; }
+        public string Work { get; set; }
+        public string Group { get; set; }
+        public string Material { get; set; }
+        public int Quantity { get; set; }
+        public string Unit { get; set; }
+    }
 
     [Route("api/[controller]")]
     [ApiController]
@@ -17,11 +35,14 @@ namespace ASTS.Controllers
     {
         private readonly IMaterialRequestService _materialRequestService;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IEmailService _emailService;
 
         public MaterialRequestsController(IMaterialRequestService materialRequestService,
+            IEmailService emailService,
             UserManager<IdentityUser> userManager)
         {
             _materialRequestService = materialRequestService;
+            _emailService = emailService;
             _userManager = userManager;
         }
 
@@ -37,8 +58,52 @@ namespace ASTS.Controllers
             //var res = await _materialRequestService.AddNewMaterialRequest(newMaterialRequest, user.Id);
 
             var res = await _materialRequestService.AddNewMaterialRequest(newMaterialRequest, "83f3b71e-aa2d-4888-8316-26ea3975eca7"); // 83f3b71e-aa2d-4888-8316-26ea3975eca7
-            return new JsonResult(res);
+            try
+            {
+                var callbackUrl = Url.Action(
+                                    "GetInfo",
+                                    "MaterialRequests",
+                                    new { requestId = res.Id },
+                                    protocol: HttpContext.Request.Scheme);
+                string msgBody = $"<a href='{callbackUrl}'>link</a><br> copy to browser: {callbackUrl}";
+                await _emailService.SendAsync("nataliatogay@gmail.com", "New material request", msgBody);
+                return new JsonResult(Response(Controllers.StatusCode.Ok));
+            }
+            catch
+            {
+                return new JsonResult(Response(Controllers.StatusCode.SendingMailError));
+            }
+            //  return new JsonResult(res);
 
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<ResponseTemp>> GetInfo(int requestId)
+        {
+            var res = await _materialRequestService.GetMaterialRequest(requestId);
+            var materials = new List<MaterialInfo>();
+            foreach (var item in res.RequestedMaterials)
+            {
+                materials.Add(new MaterialInfo()
+                {
+                    Discipline = item.Material.Work.Discipline.Title,
+                    Work = item.Material.Work.Title,
+                    Material = item.Material.Title,
+                    Group = item.Material.MaterialGroup.Title,
+                    Quantity = item.Quantity,
+                    Unit = item.Material.MaterialUnit.Title
+                });
+            }
+            var result = new ResponseTemp()
+            {
+                Project = res.Area.Project.Title,
+                Area = res.Area.Title,
+                RequiredDate = res.DateRequired.ToShortDateString(),
+                Materials = materials
+            };
+            return new JsonResult(result);
         }
 
 

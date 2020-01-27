@@ -109,6 +109,8 @@ namespace ASTS
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                 });
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

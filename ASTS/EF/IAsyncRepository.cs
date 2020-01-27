@@ -19,6 +19,7 @@ namespace ASTS.EF
 
 
         // Material requests
+        Task<MaterialRequest> GetMaterialRequest(int id);
         Task<MaterialRequest> AddMaterialRequest(MaterialRequest materialRequest);
         Task<RequestedMaterial> AddRequestedMaterial(RequestedMaterial requestedMaterial);
 
