@@ -10,16 +10,14 @@ namespace ASTS.DTOs
     {
 
         [Required]
-        public string DateIssue { get; set; }
-        [Required]
         public string DateRequired { get; set; }
         public int AreaId { get; set; }
         public string AdditionalInfo { get; set; }
         public ICollection<RequestedMaterialRequest> Materials { get; set; }
     }
-        public class RequestedMaterialRequest
-        {
-            public int MaterialId { get; set; }
-            public int Quantity { get; set; }
-        }
+    public class RequestedMaterialRequest
+    {
+        public int MaterialId { get; set; }
+        public int Quantity { get; set; }
+    }
 }

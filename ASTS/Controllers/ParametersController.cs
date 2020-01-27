@@ -6,6 +6,7 @@ using ASTS.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ASTS.DTOs;
+using Newtonsoft.Json;
 
 namespace ASTS.Controllers
 {
@@ -23,7 +24,17 @@ namespace ASTS.Controllers
         [HttpGet]
         public async Task<ActionResult<ServerResponse<MaterialRequestParametersResponse>>> Get()
         {
-            return new JsonResult(Response(await _parametersRequestService.GetParameters()));
+            var res = new JsonResult(Response(await _parametersRequestService.GetParameters()));
+            return res;
         }
+
+
+        //[HttpGet]
+        //public async Task<ActionResult<string>> Get()
+        //{
+        //    var res = JsonConvert.SerializeObject(Response(await _parametersRequestService.GetParameters()));
+        //    //var jres = new JsonResult(res);
+        //    return res;
+        //}
     }
 }

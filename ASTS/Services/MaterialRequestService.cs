@@ -33,7 +33,7 @@ namespace ASTS.Services
             var materialRequest = new MaterialRequest()
             {
                 AreaId = materialRequestRequest.AreaId,
-                DateIssue = DateTime.ParseExact(materialRequestRequest.DateIssue, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                DateIssue = DateTime.Now,
                 DateRequired = DateTime.ParseExact(materialRequestRequest.DateRequired, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                 AdditionalInfo = materialRequestRequest.AdditionalInfo,
                 //IssuedByUserId = issuer.Id,

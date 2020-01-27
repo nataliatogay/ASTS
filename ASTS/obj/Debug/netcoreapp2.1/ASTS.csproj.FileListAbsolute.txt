@@ -1,0 +1,16 @@
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\appsettings.Development.json
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\appsettings.json
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\ASTS.deps.json
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\ASTS.runtimeconfig.json
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\ASTS.runtimeconfig.dev.json
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\ASTS.dll
+D:\VSProjects\ASTS\ASTS\bin\Debug\netcoreapp2.1\ASTS.pdb
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.csprojAssemblyReference.cache
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.RazorAssemblyInfo.cache
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.RazorAssemblyInfo.cs
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.AssemblyInfoInputs.cache
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.AssemblyInfo.cs
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.RazorTargetAssemblyInfo.cache
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.dll
+D:\VSProjects\ASTS\ASTS\obj\Debug\netcoreapp2.1\ASTS.pdb
