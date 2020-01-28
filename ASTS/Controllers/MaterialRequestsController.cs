@@ -16,10 +16,10 @@ namespace ASTS.Controllers
         public string Project { get; set; }
         public string Area { get; set; }
         public string RequiredDate { get; set; }
-        public ICollection<MaterialInfo> Materials { get; set; }
+        public ICollection<MaterialInfoContr> Materials { get; set; }
     }
 
-    public class MaterialInfo
+    public class MaterialInfoContr
     {
         public string Discipline { get; set; }
         public string Work { get; set; }
@@ -57,7 +57,7 @@ namespace ASTS.Controllers
             //}
             //var res = await _materialRequestService.AddNewMaterialRequest(newMaterialRequest, user.Id);
 
-            var res = await _materialRequestService.AddNewMaterialRequest(newMaterialRequest, "83f3b71e-aa2d-4888-8316-26ea3975eca7"); // 83f3b71e-aa2d-4888-8316-26ea3975eca7
+            var res = await _materialRequestService.AddNewMaterialRequest(newMaterialRequest, "9f4b0e15-7890-4e84-9ba0-223f23ad23fe"); // 83f3b71e-aa2d-4888-8316-26ea3975eca7
             try
             {
                 var callbackUrl = Url.Action(
@@ -80,13 +80,13 @@ namespace ASTS.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<ResponseTemp>> GetInfo(int requestId)
+        public async Task<ActionResult<MaterialRequest>> GetInfo(int requestId)
         {
-            var res = await _materialRequestService.GetMaterialRequest(requestId);
-            var materials = new List<MaterialInfo>();
+            MaterialRequest res = await _materialRequestService.GetMaterialRequest(requestId);
+            var materials = new List<MaterialInfoContr>();
             foreach (var item in res.RequestedMaterials)
             {
-                materials.Add(new MaterialInfo()
+                materials.Add(new MaterialInfoContr()
                 {
                     Discipline = item.Material.Work.Discipline.Title,
                     Work = item.Material.Work.Title,
@@ -103,7 +103,9 @@ namespace ASTS.Controllers
                 RequiredDate = res.DateRequired.ToShortDateString(),
                 Materials = materials
             };
-            return new JsonResult(result);
+
+            var res2 = new JsonResult(res);
+            return res2;
         }
 
 
@@ -128,7 +130,7 @@ namespace ASTS.Controllers
             }
             // add new user
 
-            var newUser = _materialRequestService.AddUser(new User()
+            var newUser = await _materialRequestService.AddUser(new User()
             {
                 FirstName = "Erman",
                 LastName = "Togay",

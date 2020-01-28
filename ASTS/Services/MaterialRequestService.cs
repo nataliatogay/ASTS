@@ -37,8 +37,8 @@ namespace ASTS.Services
                 //DateRequired = DateTime.ParseExact(materialRequestRequest.DateRequired, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                 DateRequired = materialRequestRequest.DateRequired,
                 AdditionalInfo = materialRequestRequest.AdditionalInfo,
-                //IssuedByUserId = issuer.Id,
-                IssuedByUserId = 1
+                IssuedByUserId = issuer.Id
+                //IssuedByUserId = 1
 
                 // continue with users 
             };
